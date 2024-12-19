@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://yt3.googleusercontent.com/XhVP1_F4DS64NENeMndgcd4zoAAIFdcnv7vYHo-fTbjxwAlIZzQI055QWLayX_ehWF0hxk5jzQ=w1060-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj"
+    />
+    <title>Topspin Restaurant</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f8f9fa;
+      }
+      header {
+        background-image: url("https://www.topspinclub.in/wp-content/uploads/2024/05/hm-cafe-banner-img.webp");
+        background-size: cover;
+        background-position: center;
+        color: white;
+        text-align: center;
+        padding: 50px 20px;
+      }
+      header h1 {
+        margin: 0;
+        font-size: 3rem;
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+      }
+      .container {
+        max-width: 900px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      .coupon {
+        display: flex;
+        align-items: center;
+        margin: 20px 0;
+        padding: 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background-color: #fef8e6;
+        position: relative;
+        overflow: hidden;
+      }
+      .coupon img {
+        width: 120px;
+        height: 120px;
+        border-radius: 5px;
+        margin-right: 20px;
+      }
+      .coupon-content {
+        flex: 1;
+      }
+      .coupon-content h3 {
+        margin: 0 0 10px;
+        font-size: 1.5rem;
+        color: #333;
+      }
+      .coupon-content .expiry {
+        font-size: 14px;
+        color: #888;
+      }
+      .coupon-content .cancelled-date {
+        font-size: 14px;
+        color: #ff4d4d;
+        font-weight: bold;
+      }
+      .coupon button {
+        background-color: #ff4d4d;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        position: absolute;
+        bottom: 15px;
+        right: 15px;
+      }
+      .coupon button:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+      }
+      .start-validity-btn {
+        display: block;
+        margin: 20px auto;
+        padding: 10px 20px;
+        background-color: #28a745;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1rem;
+      }
+      .start-validity-btn:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+      }
+      .date-info {
+        text-align: center;
+        margin: 20px 0;
+        font-size: 1rem;
+        color: #555;
+      }
+      .auth-links {
+        text-align: center;
+        margin-top: 20px;
+      }
+      .auth-links a {
+        margin: 0 10px;
+        text-decoration: none;
+        color: #007bff;
+        font-weight: bold;
+      }
+      footer {
+        background-color: #343a40;
+        color: #fff;
+        text-align: center;
+        padding: 20px 10px;
+        margin-top: 20px;
+      }
+
+      footer a {
+        color: #ffc107;
+        text-decoration: none;
+      }
+
+      footer a:hover {
+        text-decoration: underline;
+      }
+
+      .footer-content p {
+        margin: 10px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Welcome to Topspin Restaurant</h1>
+    </header>
+    <div class="container">
+      <button id="startValidity" class="start-validity-btn">
+        Start Validity
+      </button>
+      <div id="dateInfo" class="date-info"></div>
+      <h2>Available Coupons</h2>
+      <p>Use these coupons within 10 days from their release date!</p>
+      <div id="coupons"></div>
+      <div class="auth-links">
+        <a href="create-account.html">Create Account</a>
+        <a href="login.html">Login</a>
+      </div>
+    </div>
+    <footer>
+      <div class="footer-content">
+        <p>&copy; 2024 Topspin Restaurant. All Rights Reserved.</p>
+
+        <p>
+          Contact us:
+          <a href="mailto:info@topspinrestaurant.com"
+            >info@topspinrestaurant.com</a
+          >
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      const isAuthenticated = localStorage.getItem("isAuthenticated");
+      if (!isAuthenticated) {
+        alert("Please log in to access this page.");
+        window.location.href = "login.html";
+      }
+      const coupons = [
+        {
+          id: 1,
+          name: "free coupon",
+          img: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0d/bb/bb/32/chinapolis-interiors.jpg?w=900&h=500&s=1",
+        },
+        {
+          id: 2,
+          name: "free coupon",
+          img: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0d/bb/bb/32/chinapolis-interiors.jpg?w=900&h=500&s=1",
+        },
+        {
+          id: 3,
+          name: "free coupon",
+          img: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0d/bb/bb/32/chinapolis-interiors.jpg?w=900&h=500&s=1",
+        },
+        {
+          id: 4,
+          name: "free coupon",
+          img: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0d/bb/bb/32/chinapolis-interiors.jpg?w=900&h=500&s=1",
+        },
+        {
+          id: 5,
+          name: "free coupon",
+          img: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0d/bb/bb/32/chinapolis-interiors.jpg?w=900&h=500&s=1",
+        },
+        {
+          id: 6,
+          name: "free coupon",
+          img: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0d/bb/bb/32/chinapolis-interiors.jpg?w=900&h=500&s=1",
+        },
+        {
+          id: 7,
+          name: "free coupon",
+          img: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0d/bb/bb/32/chinapolis-interiors.jpg?w=900&h=500&s=1",
+        },
+      ];
+
+      const cancelledCoupons =
+        JSON.parse(localStorage.getItem("cancelledCoupons")) || [];
+      const validityStartDate =
+        localStorage.getItem("validityStartDate") || null;
+
+      function renderCoupons() {
+        const couponContainer = document.getElementById("coupons");
+        couponContainer.innerHTML = "";
+        const today = new Date();
+        const startDate = validityStartDate
+          ? new Date(validityStartDate)
+          : null;
+        const endDate = startDate
+          ? new Date(startDate.getTime() + 10 * 24 * 60 * 60 * 1000)
+          : null;
+        const isValidityActive =
+          startDate && today - startDate < 10 * 24 * 60 * 60 * 1000;
+
+        document.getElementById("dateInfo").innerHTML =
+          startDate && endDate
+            ? `Validity started on: ${startDate.toLocaleDateString()}<br>Expires on: ${endDate.toLocaleDateString()}`
+            : "Validity has not started yet.";
+
+        coupons.forEach((coupon) => {
+          const cancelledDate =
+            cancelledCoupons.find((item) => item.id === coupon.id)?.date ||
+            null;
+          const daysRemaining = startDate
+            ? Math.max(
+                0,
+                10 - Math.ceil((today - startDate) / (1000 * 60 * 60 * 24))
+              )
+            : "N/A";
+
+          const couponDiv = document.createElement("div");
+          couponDiv.classList.add("coupon");
+
+          couponDiv.innerHTML = `
+                    <img src="${coupon.img}" alt="Coupon Image">
+                    <div class="coupon-content">
+                        <h3>${coupon.name}</h3>
+                        <span class="expiry">Expires in ${daysRemaining} days</span>
+                        ${
+                          cancelledDate
+                            ? `<div class="cancelled-date">Cancelled on: ${cancelledDate}</div>`
+                            : ""
+                        }
+                    </div>
+                `;
+
+          const cancelButton = document.createElement("button");
+          cancelButton.textContent = cancelledDate ? "Cancelled" : "Cancel";
+          cancelButton.disabled = !isValidityActive || !!cancelledDate;
+
+          cancelButton.addEventListener("click", () => {
+            cancelledCoupons.push({
+              id: coupon.id,
+              date: new Date().toLocaleDateString(),
+            });
+            localStorage.setItem(
+              "cancelledCoupons",
+              JSON.stringify(cancelledCoupons)
+            );
+            renderCoupons();
+          });
+
+          couponDiv.appendChild(cancelButton);
+          couponContainer.appendChild(couponDiv);
+        });
+      }
+
+      document.getElementById("startValidity").addEventListener("click", () => {
+        if (!validityStartDate) {
+          const today = new Date();
+          localStorage.setItem("validityStartDate", today.toISOString());
+          renderCoupons();
+        }
+        window.location.href = "index.html";
+      });
+
+      window.onload = () => {
+        renderCoupons();
+        if (validityStartDate) {
+          document.getElementById("startValidity").disabled = true;
+        }
+      };
+    </script>
+  </body>
+</html>
