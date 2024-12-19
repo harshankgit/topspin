@@ -79,9 +79,15 @@
         border-radius: 5px;
         cursor: pointer;
         position: absolute;
-        bottom: 15px;
-        right: 15px;
+        bottom: 15px; /* Adjust spacing */
+        right: 15px; /* Adjust spacing */
+        z-index: 1; /* Ensure it's above background elements */
       }
+
+      .coupon .coupon-content {
+        padding-bottom: 40px; /* Add padding to avoid overlap */
+      }
+
       .coupon button:disabled {
         background-color: #ccc;
         cursor: not-allowed;
